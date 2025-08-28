@@ -5,6 +5,8 @@ fastapi
 
 uvicorn[standard]
 
+python-multipart
+
 pika
 
 python-dotenv
