@@ -1,0 +1,14 @@
+# requirements.txt
+
+# API framework
+fastapi
+
+uvicorn[standard]
+
+python-multipart
+
+pika
+
+python-dotenv
+
+celery[librabbitmq]
