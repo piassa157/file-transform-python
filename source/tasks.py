@@ -11,7 +11,7 @@ def transform_dat_content(content: str) -> str:
     """
 
 
-    lines = content.strip().splt('\n')
+    lines = content.strip().split('\n')
 
     if len(lines) < 2:
         return content
@@ -56,17 +56,17 @@ def process_zip_file(zip_file_path: str):
         with zipfile.ZipFile(zip_file_path, 'r') as original_zip:
             with zipfile.ZipFile(in_memory_zip, 'w', zipfile.ZIP_DEFLATED) as new_zip:
                 for item in original_zip.infolist():
-                    content = original_zip.read(item.name)
+                    content = original_zip.read(item.filename)
 
-                    if item.name.low().endswith('.dat'):
-                        print(f"found file .dat: {item.name}. Starting the process.")
+                    if item.filename.endswith('.dat'):
+                        print(f"found file .dat: {item.filename}. Starting the process.")
 
                         original_content_str = content.decode('utf-8')
                         transformed_content_str = transform_dat_content(original_content_str)
                         content = transformed_content_str.encode('utf-8')
                         print("Process finished!")
 
-                    new_zip.writestr(item, content)
+                    new_zip.writestr(item.filename, content)
 
         with open(zip_file_path, 'wb') as f:
             f.write(in_memory_zip.getvalue())
