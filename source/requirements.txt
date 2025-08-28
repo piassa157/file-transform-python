@@ -1,0 +1,10 @@
+# requirements.txt
+
+# API framework
+fastapi
+
+uvicorn[standard]
+
+pika
+
+python-dotenv
